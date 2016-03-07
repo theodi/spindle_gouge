@@ -40,10 +40,7 @@ module SpindleGouge
         wants.png do
           headers 'Content-type' => 'image/png'
           image = Magick::Image.read(File.join(settings.public_folder, 'svg', 'logo.svg')).first
-          File.open 'derp.png', 'w' do |f|
-            f.write image.to_blob { |attrs| attrs.format = 'PNG' }
-          end
-          send_file 'derp.png'
+          response.write image.to_blob { |attrs| attrs.format = 'PNG' }
         end
       end
     end
