@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'tilt/erubis'
 require 'json'
+require 'rmagick'
 
 require_relative 'spindle_gouge/racks'
 require_relative 'spindle_gouge/helpers'
@@ -34,6 +35,15 @@ module SpindleGouge
         wants.svg do
           headers 'Content-type' => 'image/svg+xml'
           send_file File.join(settings.public_folder, 'svg', 'logo.svg')
+        end
+
+        wants.png do
+          headers 'Content-type' => 'image/png'
+          image = Magick::Image.read(File.join(settings.public_folder, 'svg', 'logo.svg')).first
+          File.open 'derp.png', 'w' do |f|
+            f.write image.to_blob { |attrs| attrs.format = 'PNG' }
+          end
+          send_file 'derp.png'
         end
       end
     end

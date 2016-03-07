@@ -12,7 +12,8 @@ module SpindleGouge
       conneg.provide [
         :html,
         :json,
-        :svg
+        :svg,
+        :png
       ]
     end
 

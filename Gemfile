@@ -7,6 +7,7 @@ gem 'rack-conneg'
 gem 'rack-google-analytics'
 gem 'rake'
 gem 'puma'
+gem 'rmagick'
 
 group :test do
   gem 'cucumber'
