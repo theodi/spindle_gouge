@@ -1,4 +1,6 @@
 module SpindleGouge
+  SVG_HEADERS = { 'HTTP_ACCEPT' => 'image/svg+xml' }
+  PNG_HEADERS = { 'HTTP_ACCEPT' => 'image/png' }
   describe App do
     it 'says hello' do
       get '/'
@@ -8,17 +10,23 @@ module SpindleGouge
 
     context 'simple SVG' do
       it 'serves up a SVG' do
-        get '/logo/print/basic', nil, { 'HTTP_ACCEPT' => 'image/svg+xml' }
+        get '/logo/print/basic', nil, SVG_HEADERS
         expect(last_response.headers['Content-type']).to eq 'image/svg+xml'
         expect(last_response.headers['Content-length']).to eq '28795'
       end
     end
 
-    context 'simple PNG' do
+    context 'PNGs' do
       it 'serves up a PNG' do
-        get '/logo/print/basic', nil, { 'HTTP_ACCEPT' => 'image/png' }
+        get '/logo/print/basic', nil, PNG_HEADERS
         expect(last_response.headers['Content-type']).to eq 'image/png'
         expect(last_response.headers['Content-length']).to eq '5109'
+      end
+
+      it 'scales a PNG' do
+        get '/logo/print/basic?width=100', nil, PNG_HEADERS
+        expect(last_response.headers['Content-type']).to eq 'image/png'
+        expect(last_response.headers['Content-length']).to eq '1876'
       end
     end
   end

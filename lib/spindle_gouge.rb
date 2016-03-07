@@ -44,7 +44,9 @@ module SpindleGouge
         wants.png do
           headers 'Content-type' => 'image/png'
           image = Magick::Image.read(path).first
-          response.write image.to_blob { |attrs| attrs.format = 'PNG' }
+          image.format = 'PNG'
+          image.resize_to_fit! params[:width] if params[:width]
+          response.write image.to_blob
         end
       end
     end
