@@ -12,34 +12,38 @@ module SpindleGouge
       include SpindleGouge::Helpers
     end
 
-    get '/' do
+    before do
       headers 'Vary' => 'Accept'
+    end
 
+    get '/' do
       respond_to do |wants|
         wants.html do
           @content = '<h1>Hello from SpindleGouge</h1>'
           @title = 'SpindleGouge'
           erb :index, layout: :default
         end
-
-        wants.json do
-          {
-            app: 'SpindleGouge'
-          }.to_json
-        end
       end
     end
 
-    get '/logo' do
+    get '/:thing/:format/:name' do
+      path = File.join(
+        settings.public_folder,
+        'svg',
+        params[:thing],
+        params[:format],
+        "#{params[:name]}.svg"
+      )
+
       respond_to do |wants|
         wants.svg do
           headers 'Content-type' => 'image/svg+xml'
-          send_file File.join(settings.public_folder, 'svg', 'logo.svg')
+          send_file path
         end
 
         wants.png do
           headers 'Content-type' => 'image/png'
-          image = Magick::Image.read(File.join(settings.public_folder, 'svg', 'logo.svg')).first
+          image = Magick::Image.read(path).first
           response.write image.to_blob { |attrs| attrs.format = 'PNG' }
         end
       end

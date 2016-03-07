@@ -1,6 +1,8 @@
 require 'coveralls'
 Coveralls.wear_merged!
 
+require 'rack/test'
+
 require 'spindle_gouge'
 
 RSpec.configure do |config|
@@ -13,4 +15,9 @@ RSpec.configure do |config|
   end
 
   config.order = :random
+
+  include Rack::Test::Methods
+  def app
+   SpindleGouge::App
+ end
 end
