@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+- 2.3.0
+deploy:
+  provider: heroku
+  api_key:
+    secure: sKxuQKX+bIY6wFJGPxr0xeGLWG4Brwt/oMqjGQXUQ693r4bU/JES3vsDpOtPsFMTNwe4iYGOwDqDXVKJIZnpV3waLPdD3y5lRTdS9luJdb4wdItmn2ttcFgbKnPW3Ek1X+jLgYn3B/R6DMTRRMjwijq3qy7hdsL+R6ko0lDS7FYEwI77A/xC4nlwg26nFlIG5kvq385kw0rU5eMirQ9K82bhdhnAnq2uAJGJOoF+FmoldvT3ZHcM2R4BWDrfCm8Y8yCPi9O2LpsRilXEFMGozQVX7aT9rLRHFT+gro7mfpfpwZhaw2h7t4avuxQc7ygRpsswPW0/zUjHGb+pPcGitUO9AB2w0mVchk70Iib7htJ0HJe542fLdn0zfXiZs/Gt6Vu6/M1dxBpZ9SizGIp8kHdk6ZrZn4jr5wLbbatihu5ZRMi4GMR7wwvywEKjnd5WfjQqOewjTUxgOfwom06Uc317Wbk0gOXh5HhFzvIsG2YebVklkZMix/pBYg1CzCJ3eEkufkITQAyrjPexPEi226buu7TKHoJWBdIac8orl463PsTAUGjaBKy8kSjDzN2h8iJsEfI6tZKO0Rcv4j6ZZiXZM74LNMyisHeMt/jb3EfGy5VxnOgS7sxFxbByL+LvwplzENDP5ugF9l32rgTb0vh647dV3bkmxlWTq9bZlEA=
+  app: spindle-gouge
+  on:
+    repo: theodi/spindle_gouge
