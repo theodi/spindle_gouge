@@ -11,7 +11,8 @@ module SpindleGouge
       conneg.ignore_contents_of 'public'
       conneg.provide [
         :html,
-        :json
+        :json,
+        :svg
       ]
     end
 

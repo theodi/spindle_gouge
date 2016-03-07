@@ -29,6 +29,15 @@ module SpindleGouge
       end
     end
 
+    get '/logo' do
+      respond_to do |wants|
+        wants.svg do
+          headers 'Content-type' => 'image/svg+xml'
+          send_file File.join(settings.public_folder, 'svg', 'logo.svg')
+        end
+      end
+    end
+
     # start the server if ruby file executed directly
     run! if app_file == $0
   end
