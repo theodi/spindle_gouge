@@ -38,7 +38,8 @@ module SpindleGouge
       respond_to do |wants|
         wants.svg do
           headers 'Content-type' => 'image/svg+xml'
-          send_file path
+          @colour = params[:colour]
+          erb :'basic.svg'
         end
 
         wants.png do
