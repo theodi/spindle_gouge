@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'tilt/erubis'
 require 'json'
+require 'yaml'
 require 'rmagick'
 
 require_relative 'spindle_gouge/racks'
@@ -30,7 +31,10 @@ module SpindleGouge
       respond_to do |wants|
         wants.svg do
           headers 'Content-type' => 'image/svg+xml'
-          @colour = params[:colour]
+          @colour = params.fetch('colour', '000000')
+          if fetch_colour @colour
+            @colour = fetch_colour @colour
+          end
           erb :"svg/#{params[:thing]}/#{params[:name]}.svg"
         end
 

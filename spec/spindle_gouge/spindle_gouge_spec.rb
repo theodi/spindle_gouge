@@ -12,6 +12,17 @@ module SpindleGouge
       it 'serves up a SVG' do
         get '/logo/basic', nil, SVG_HEADERS
         expect(last_response.headers['Content-type']).to eq 'image/svg+xml'
+        expect(last_response.body).to match /path fill="#000000"/
+      end
+
+      it 'colours an SVG' do
+        get '/logo/basic?colour=fa8100', nil, SVG_HEADERS
+        expect(last_response.body).to match /path fill="#fa8100"/
+      end
+
+      it 'colours an SVG using a named colour' do
+        get '/logo/basic?colour=blue-1', nil, SVG_HEADERS
+        expect(last_response.body).to match /path fill="#2254f4"/
       end
     end
 

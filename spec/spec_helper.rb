@@ -1,8 +1,9 @@
+ENV['RACK_ENV'] = 'test'
+
 require 'coveralls'
 Coveralls.wear_merged!
 
 require 'rack/test'
-
 require 'spindle_gouge'
 
 RSpec.configure do |config|
