@@ -28,21 +28,30 @@ module SpindleGouge
     end
 
     get '/:thing/:name' do
+      @primary, @secondary = wrangle_colours(params)
+
       respond_to do |wants|
         wants.svg do
           headers 'Content-type' => 'image/svg+xml'
-          @primary, @secondary = wrangle_colours(params)
 
           erb :"svg/#{params[:thing]}/#{params[:name]}.svg"
         end
 
-#        wants.png do
-#          headers 'Content-type' => 'image/png'
-#          image = Magick::Image.read(path).first
-#          image.format = 'PNG'
-#          image.resize_to_fit! params[:width] if params[:width]
-#          response.write image.to_blob
-#        end
+        wants.png do
+          headers 'Content-type' => 'image/png'
+          path = File.join(
+            settings.views,
+            'svg',
+            params[:thing],
+            "#{params[:name]}.svg.erb"
+          )
+
+          e = ERB.new File.read path
+          image = Magick::Image.from_blob(e.result).first
+          image.format = 'PNG'
+          image.resize_to_fit! params[:width] if params[:width]
+          response.write image.to_blob
+        end
       end
     end
 

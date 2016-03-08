@@ -31,18 +31,16 @@ module SpindleGouge
       end
     end
 
-#    context 'PNGs' do
-#      it 'serves up a PNG' do
-#        get '/logo/web/basic', nil, PNG_HEADERS
-#        expect(last_response.headers['Content-type']).to eq 'image/png'
-#        expect(last_response.headers['Content-length']).to be >= '2694'
-#      end
-#
-#      it 'scales a PNG' do
-#        get '/logo/web/basic?width=100', nil, PNG_HEADERS
-#        expect(last_response.headers['Content-type']).to eq 'image/png'
-#        expect(last_response.headers['Content-length']).to be <= '1876'
-#      end
-#    end
+    context 'PNGs' do
+      it 'serves up a PNG' do
+        get '/logo/basic', nil, PNG_HEADERS
+        expect(last_response.headers['Content-type']).to eq 'image/png'
+      end
+
+      it 'scales a PNG' do
+        get '/logo/basic?width=100', nil, PNG_HEADERS
+        expect(last_response.headers['Content-type']).to eq 'image/png'
+      end
+    end
   end
 end
