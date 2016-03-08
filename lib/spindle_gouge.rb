@@ -31,10 +31,21 @@ module SpindleGouge
       respond_to do |wants|
         wants.svg do
           headers 'Content-type' => 'image/svg+xml'
-          @colour = params.fetch('colour', '000000')
-          if fetch_colour @colour
-            @colour = fetch_colour @colour
+          @primary = params.fetch('primary', '000000')
+          @secondary = params.fetch('secondary', 'ffffff')
+
+          if params[:colour]
+            @primary = params[:colour]
           end
+
+          if fetch_colour @primary
+            @primary = fetch_colour @primary
+          end
+
+          if fetch_colour @secondary
+            @secondary = fetch_colour @secondary
+          end
+          
           erb :"svg/#{params[:thing]}/#{params[:name]}.svg"
         end
 

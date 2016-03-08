@@ -11,5 +11,6 @@ unless ENV['RACK_ENV'] == 'production'
   RSpec::Core::RakeTask.new
   Coveralls::RakeTask.new
 
-  task :default => [:cucumber, :spec, 'jasmine:ci', 'coveralls:push']
+#  task :default => [:cucumber, :spec, 'jasmine:ci', 'coveralls:push']
+  task :default => [:cucumber, :spec, 'coveralls:push']
 end

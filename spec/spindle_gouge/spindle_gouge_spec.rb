@@ -21,8 +21,13 @@ module SpindleGouge
       end
 
       it 'colours an SVG using a named colour' do
-        get '/logo/basic?colour=blue-1', nil, SVG_HEADERS
+        get '/logo/basic?primary=blue-1', nil, SVG_HEADERS
         expect(last_response.body).to match /path fill="#2254f4"/
+      end
+
+      it 'colours an SVG with primary and secondary colours' do
+        get '/logo/partner?primary=123123&secondary=red', nil, SVG_HEADERS
+        expect(last_response.body).to match /path fill="#123123".*path fill="#d60303"/m
       end
     end
 
