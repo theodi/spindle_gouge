@@ -27,6 +27,37 @@ module SpindleGouge
       end
     end
 
+    get '/labs/:name' do
+      @word_location = params.fetch('word-location', 'word-inside')
+      path = File.join(
+        'svg',
+        'labs',
+        @word_location,
+        "#{params[:name]}.svg"
+      )
+
+      respond_to do |wants|
+        wants.svg do
+          headers 'Content-type' => 'image/svg+xml'
+          erb path.to_sym
+        end
+
+        wants.png do
+          headers 'Content-type' => 'image/png'
+          path = File.join(
+            settings.views,
+            "#{path}.erb"
+          )
+
+          e = ERB.new File.read path
+          image = Magick::Image.from_blob(e.result binding).first
+          image.format = 'PNG'
+          image.resize_to_fit! params[:width] if params[:width]
+          response.write image.to_blob
+        end
+      end
+    end
+
     get '/:thing/:name' do
       @primary, @secondary = wrangle_colours(params)
       path = File.join(

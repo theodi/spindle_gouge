@@ -42,5 +42,13 @@ module SpindleGouge
         expect(last_response.headers['Content-type']).to eq 'image/png'
       end
     end
+
+    context 'labs' do
+      it 'gets a logo' do
+        get '/labs/bubbles', nil, SVG_HEADERS
+        expect(last_response.headers['Content-type']).to eq 'image/svg+xml'
+        expect(Digest::SHA256.hexdigest last_response.body).to eq '4cce4045b174e7d1ef0010cb73474b6704d8a1b8f956e2300bd0a0af8feb6b99'
+      end
+    end
   end
 end

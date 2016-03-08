@@ -1,5 +1,6 @@
 ENV['RACK_ENV'] = 'test'
 
+require 'digest'
 require 'coveralls'
 Coveralls.wear_merged!
 
