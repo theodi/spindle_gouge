@@ -20,7 +20,7 @@ module SpindleGouge
     get '/' do
       respond_to do |wants|
         wants.html do
-          @content = '<h1>Hello from SpindleGouge</h1>'
+          @content = '<h1>ODI Brand API</h1>'
           @title = 'SpindleGouge'
           erb :index, layout: :default
         end
@@ -37,23 +37,16 @@ module SpindleGouge
       )
 
       respond_to do |wants|
+        wants.html do
+          erb :labs, layout: :default
+        end
+
         wants.svg do
-          headers 'Content-type' => 'image/svg+xml'
-          erb path.to_sym
+          gimme_svg path
         end
 
         wants.png do
-          headers 'Content-type' => 'image/png'
-          path = File.join(
-            settings.views,
-            "#{path}.erb"
-          )
-
-          e = ERB.new File.read path
-          image = Magick::Image.from_blob(e.result binding).first
-          image.format = 'PNG'
-          image.resize_to_fit! params[:width] if params[:width]
-          response.write image.to_blob
+          gimme_png path
         end
       end
     end
@@ -67,23 +60,16 @@ module SpindleGouge
       )
 
       respond_to do |wants|
+        wants.html do
+          erb :logo, layout: :default
+        end
+
         wants.svg do
-          headers 'Content-type' => 'image/svg+xml'
-          erb path.to_sym
+          gimme_svg path
         end
 
         wants.png do
-          headers 'Content-type' => 'image/png'
-          path = File.join(
-            settings.views,
-            "#{path}.erb"
-          )
-
-          e = ERB.new File.read path
-          image = Magick::Image.from_blob(e.result binding).first
-          image.format = 'PNG'
-          image.resize_to_fit! params[:width] if params[:width]
-          response.write image.to_blob
+          gimme_png path
         end
       end
     end

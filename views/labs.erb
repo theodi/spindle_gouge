@@ -1,0 +1,12 @@
+<div class='text-center well'>
+  <img src='<%= request.env['REQUEST_PATH'] %>.svg?word=<%= @word_location %>' />
+</div>
+
+<div class='text-center'>
+  <% if @word_location == 'inside' %>
+    <% other = 'outside' %>
+  <% else %>
+    <% other = 'inside' %>
+  <% end %>
+  <a href='<%= request.env['REQUEST_PATH'] %>?word=<%= other %>'>Word-<%= other %> variant</a>
+</div>

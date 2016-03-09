@@ -1,1 +1,33 @@
 <%= @content %>
+
+<h2>Logos</h2>
+<div class='row'>
+<% logos = File.join settings.views, 'svg', 'logo' %>
+<% Dir.entries(logos).each do |logo| %>
+  <% unless logo[0] == '.' %>
+    <% url = "/logo/#{logo.sub '.svg.erb', ''}" %>
+    <div class='col-md-4'>
+      <a href='<%= url %>'>
+        <img src='<%= url %>.svg?primary=fa8100&secondary=abcdef' width='200' />
+      </a>
+    </div>
+  <% end %>
+<% end %>
+</div>
+
+<hr />
+
+<h2>Labs</h2>
+<div class='row'>
+<% labs = File.join settings.views, 'svg', 'labs', 'word-inside' %>
+<% Dir.entries(labs).each do |lab| %>
+  <% unless lab[0] == '.' %>
+    <% url = "/labs/#{lab.sub '.svg.erb', ''}" %>
+      <div class='col-md-6'>
+        <a href='<%= url %>'>
+          <img src='<%= url %>.svg?primary=fa8100&secondary=abcdef' width='200' />
+        </a>
+      </div>
+  <% end %>
+<% end %>
+</div>

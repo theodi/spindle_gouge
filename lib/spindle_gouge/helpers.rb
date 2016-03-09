@@ -16,5 +16,24 @@ module SpindleGouge
         @secondary
       ]
     end
+
+    def gimme_svg path
+      headers 'Content-type' => 'image/svg+xml'
+      erb path.to_sym
+    end
+
+    def gimme_png path
+      headers 'Content-type' => 'image/png'
+      path = File.join(
+        settings.views,
+        "#{path}.erb"
+      )
+
+      e = ERB.new File.read path
+      image = Magick::Image.from_blob(e.result binding).first
+      image.format = 'PNG'
+      image.resize_to_fit! params[:width] if params[:width]
+      response.write image.to_blob
+    end
   end
 end

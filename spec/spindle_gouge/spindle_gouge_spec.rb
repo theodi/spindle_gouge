@@ -5,7 +5,7 @@ module SpindleGouge
     it 'says hello' do
       get '/'
       expect(last_response).to be_ok
-      expect(last_response.body).to match /Hello from SpindleGouge/
+      expect(last_response.body).to match /ODI Brand API/
     end
 
     context 'simple SVG' do
