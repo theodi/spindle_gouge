@@ -76,7 +76,15 @@ module SpindleGouge
     get '/palette' do
       respond_to do |wants|
         wants.json do
-          PALETTE.to_json
+          palette.to_json
+        end
+
+        wants.txt do |wants|
+          type = params.fetch('type', 'scss')
+          case type
+            when 'scss'
+              gimme_scss
+          end
         end
       end
     end

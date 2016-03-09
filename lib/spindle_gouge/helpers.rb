@@ -20,6 +20,17 @@ module SpindleGouge
       ]
     end
 
+    def palette
+      @palette ||= begin
+        p = {}
+        PALETTE.each_pair do |name, hex|
+          p[name] = "##{pad hex}"
+        end
+
+        p
+      end
+    end
+
     def gimme_svg path
       headers 'Content-type' => 'image/svg+xml'
       erb path.to_sym
@@ -37,6 +48,21 @@ module SpindleGouge
       image.format = 'PNG'
       image.resize_to_fit! params[:width] if params[:width]
       response.write image.to_blob
+    end
+
+    def gimme_scss
+      s = ''
+      palette.each_pair do |name, hex|
+        s << "$#{name}: #{hex}"
+        s << "\n"
+      end
+      s
+    end
+
+    private
+
+    def pad s
+      "#{'0' * (6 - s.to_s.length)}#{s}"
     end
   end
 end

@@ -13,7 +13,8 @@ module SpindleGouge
         :html,
         :json,
         :svg,
-        :png
+        :png,
+        :txt
       ]
     end
 
