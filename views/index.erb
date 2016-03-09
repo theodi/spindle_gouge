@@ -1,4 +1,4 @@
-<%= @content %>
+<h1>ODI Brand API</h1>
 
 <h2>Logos</h2>
 <div class='row'>
@@ -6,9 +6,9 @@
 <% Dir.entries(logos).each do |logo| %>
   <% unless logo[0] == '.' %>
     <% url = "/logo/#{logo.sub '.svg.erb', ''}" %>
-    <div class='col-md-4'>
+    <div class='col-md-4  '>
       <a href='<%= url %>'>
-        <img src='<%= url %>.svg?primary=fa8100&secondary=abcdef' width='200' />
+        <img src='<%= url %>.svg' width='200' />
       </a>
     </div>
   <% end %>
@@ -25,7 +25,7 @@
     <% url = "/labs/#{lab.sub '.svg.erb', ''}" %>
       <div class='col-md-6'>
         <a href='<%= url %>'>
-          <img src='<%= url %>.svg?primary=fa8100&secondary=abcdef' width='200' />
+          <img src='<%= url %>.svg' width='200' />
         </a>
       </div>
   <% end %>

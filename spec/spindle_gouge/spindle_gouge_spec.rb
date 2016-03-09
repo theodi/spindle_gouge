@@ -12,8 +12,8 @@ module SpindleGouge
       it 'serves up an SVG' do
         get '/logo/basic', nil, SVG_HEADERS
         expect(last_response.headers['Content-type']).to eq 'image/svg+xml'
-        expect(last_response.body).to match /path fill="#000000"/
-        expect(Digest::SHA256.hexdigest last_response.body).to eq '24421830ca4b6427b06989e34bbb7772606d007e2d27679b25c1c728efb1f8bf'
+        expect(last_response.body).to match /path fill="#d60303"/
+        expect(Digest::SHA256.hexdigest last_response.body).to eq 'f65b1fa43275a52b0f75069d5af62312df99e5b12efc269db6f2764e1fefb23a'
       end
 
       it 'colours an SVG' do

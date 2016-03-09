@@ -1,19 +1,22 @@
 module SpindleGouge
   module Helpers
-    COLOURS = YAML.load_file 'config/colours.yaml'
+    PALETTE = YAML.load_file 'config/palette.yaml'
+    DEFAULTS = YAML.load_file 'config/defaults.yaml'
 
     def fetch_colour name
-      COLOURS[name] || name
+      PALETTE[name] || name
     end
 
     def wrangle_colours params
-      @colour = fetch_colour params.fetch('colour', '000000')
+      @colour = fetch_colour params.fetch('colour', DEFAULTS['colours']['primary'])
       @primary = fetch_colour params.fetch('primary', @colour)
-      @secondary = fetch_colour params.fetch('secondary', 'ffffff')
+      @secondary = fetch_colour params.fetch('secondary', DEFAULTS['colours']['secondary'])
+      @tertiary = fetch_colour params.fetch('tertiary', DEFAULTS['colours']['tertiary'])
 
       [
         @primary,
-        @secondary
+        @secondary,
+        @tertiary
       ]
     end
 

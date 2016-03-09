@@ -20,8 +20,7 @@ module SpindleGouge
     get '/' do
       respond_to do |wants|
         wants.html do
-          @content = '<h1>ODI Brand API</h1>'
-          @title = 'SpindleGouge'
+          @title = 'ODI Brand API'
           erb :index, layout: :default
         end
       end
@@ -52,7 +51,7 @@ module SpindleGouge
     end
 
     get '/:thing/:name' do
-      @primary, @secondary = wrangle_colours(params)
+      @primary, @secondary, @tertiary = wrangle_colours(params)
       path = File.join(
         'svg',
         params[:thing],

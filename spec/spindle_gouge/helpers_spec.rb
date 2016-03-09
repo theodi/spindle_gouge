@@ -18,7 +18,9 @@ module SpindleGouge
             'colour' => 'red'
           }
         )).to eq [
-          'd60303', 'ffffff'
+          'd60303',
+          '1dd3a7',
+          '00b7ff'
         ]
       end
 
@@ -29,7 +31,8 @@ module SpindleGouge
           }
         )).to eq [
           'fa8100',
-          'ffffff'
+          '1dd3a7',
+          '00b7ff'
         ]
       end
 
@@ -39,8 +42,9 @@ module SpindleGouge
             'secondary' => 'alt-blue-1'
           }
         )).to eq [
-          '000000',
-          '2f529f'
+          'd60303',
+          '2f529f',
+          '00b7ff'
         ]
       end
 
@@ -53,7 +57,8 @@ module SpindleGouge
           }
         )).to eq [
           '123654',
-          '191919'
+          '191919',
+          '00b7ff'
         ]
       end
     end
