@@ -75,16 +75,16 @@ module SpindleGouge
 
     get '/palette' do
       respond_to do |wants|
+        wants.html do
+          erb :palette, layout: :default
+        end
+
         wants.json do
           palette.to_json
         end
 
         wants.txt do |wants|
-          type = params.fetch('type', 'scss')
-
-              gimme_scss type
-
-
+          gimme_scss params.fetch('type', 'scss')
         end
       end
     end

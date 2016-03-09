@@ -1,12 +1,16 @@
 <h1>ODI Brand API</h1>
 
+<h2><a href='/palette'>Colours</a></h2>
+
+<hr />
+
 <h2>Logos</h2>
 <div class='row'>
 <% logos = File.join settings.views, 'svg', 'logo' %>
 <% Dir.entries(logos).each do |logo| %>
   <% unless logo[0] == '.' %>
     <% url = "/logo/#{logo.sub '.svg.erb', ''}" %>
-    <div class='col-md-4  '>
+    <div class='col-md-6  '>
       <a href='<%= url %>'>
         <img src='<%= url %>.svg' width='200' />
       </a>

@@ -1,0 +1,71 @@
+<button data-toggle='collapse' data-target='#sass' class='btn btn-info preview-sass'>Show as SASS colours <i class="fa fa-arrow-circle-down"></i></button>
+<a href='<%= request.url %>.txt' class='btn btn-info'>Get these SASS colours <i class="fa fa-arrow-circle-right"></i></a>
+<div class='well collapse' id='sass'></div>
+
+<hr />
+
+<button data-toggle='collapse' data-target='#sass-map' class='btn btn-info preview-sass-map'>Show as SASS map <i class="fa fa-arrow-circle-down"></i></button>
+<a href='<%= request.url %>.txt?type=sass_map' class='btn btn-info'>Get this SASS map <i class="fa fa-arrow-circle-right"></i></a>
+<div class='well collapse' id='sass-map'></div>
+
+<hr />
+
+<button data-toggle='collapse' data-target='#json' class='btn btn-info preview-json'>Show as JSON <i class="fa fa-arrow-circle-down"></i></button>
+<a href='<%= request.url %>.json' class='btn btn-info'>Get this JSON <i class="fa fa-arrow-circle-right"></i></a>
+<div class='well collapse' id='json'></div>
+
+<script>
+$.ajax({
+  url: document.URL,
+  dataType: 'text',
+  type: 'GET'
+}).done(function(data) {
+  $('#sass').html('<pre>' + data + '</pre>')
+});
+
+$.ajax({
+  url: document.URL,
+  dataType: 'text',
+  data: {
+    type: 'sass_map'
+  },
+  type: 'GET'
+}).done(function(data) {
+  $('#sass-map').html('<pre>' + data + '</pre>')
+});
+
+$.getJSON(document.URL, function(json) {
+  $('#json').html('<pre>' + JSON.stringify(json, null, 2) + '</pre>')
+})
+
+// http://jsfiddle.net/V4u5X/2/
+$('.preview-json').click(function(){
+  var $this = $(this);
+  $this.toggleClass('preview-json');
+  if($this.hasClass('preview-json')){
+    $this.html('Show as JSON <i class="fa fa-arrow-circle-down"></i>');
+  } else {
+    $this.html('Hide this JSON <i class="fa fa-arrow-circle-up"></i>');
+  }
+});
+
+$('.preview-sass').click(function(){
+  var $this = $(this);
+  $this.toggleClass('preview-sass');
+  if($this.hasClass('preview-sass')){
+    $this.html('Show as SASS colours <i class="fa fa-arrow-circle-down"></i>');
+  } else {
+    $this.html('Hide these SASS colours <i class="fa fa-arrow-circle-up"></i>');
+  }
+});
+
+$('.preview-sass-map').click(function(){
+  var $this = $(this);
+  $this.toggleClass('preview-sass-map');
+  if($this.hasClass('preview-sass-map')){
+    $this.html('Show as SASS map <i class="fa fa-arrow-circle-down"></i>');
+  } else {
+    $this.html('Hide this SASS map <i class="fa fa-arrow-circle-up"></i>');
+  }
+});
+</script>
