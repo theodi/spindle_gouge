@@ -73,6 +73,14 @@ module SpindleGouge
       end
     end
 
+    get '/palette' do
+      respond_to do |wants|
+        wants.json do
+          PALETTE.to_json
+        end
+      end
+    end
+
     # start the server if ruby file executed directly
     run! if app_file == $0
   end
