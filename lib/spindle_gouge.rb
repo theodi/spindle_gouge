@@ -81,10 +81,10 @@ module SpindleGouge
 
         wants.txt do |wants|
           type = params.fetch('type', 'scss')
-          case type
-            when 'scss'
-              gimme_scss
-          end
+
+              gimme_scss type
+
+
         end
       end
     end

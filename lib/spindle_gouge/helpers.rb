@@ -50,13 +50,26 @@ module SpindleGouge
       response.write image.to_blob
     end
 
-    def gimme_scss
+    def gimme_scss type = nil
       s = ''
-      palette.each_pair do |name, hex|
-        s << "$#{name}: #{hex}"
-        s << "\n"
+
+      case type
+        when 'sass_map'
+          s << '$odi-palette: ('
+          s << "\n"
+          palette.each_pair do |name, hex|
+            s << "  $#{name}: #{hex},"
+            s << "\n"
+          end
+          s << ');'
+          s
+        else
+          palette.each_pair do |name, hex|
+            s << "$#{name}: #{hex};"
+            s << "\n"
+          end
+          s
       end
-      s
     end
 
     private
