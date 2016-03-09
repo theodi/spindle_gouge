@@ -57,22 +57,25 @@ module SpindleGouge
         when 'sass_map'
           s << '$odi-palette: ('
           s << "\n"
-          palette.each_pair do |name, hex|
-            s << "  $#{name}: #{hex},"
-            s << "\n"
-          end
+          s << sassify.map { |c| "  #{c}" }.join(",\n")
+          s << "\n"
           s << ');'
           s
         else
-          palette.each_pair do |name, hex|
-            s << "$#{name}: #{hex};"
-            s << "\n"
-          end
-          s
+          sassify.map { |c| "#{c};\n" }
       end
     end
 
     private
+
+    def sassify
+      a = []
+      palette.each_pair do |name, hex|
+        a.push "$#{name}: #{hex}"
+      end
+
+      a
+    end
 
     def pad s
       "#{'0' * (6 - s.to_s.length)}#{s}"

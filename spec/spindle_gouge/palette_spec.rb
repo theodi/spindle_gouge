@@ -78,7 +78,7 @@ $alt-blue-3: #7dc5ea;
   $grey-2: #999999,
   $alt-blue-1: #2f529f,
   $alt-blue-2: #00ace8,
-  $alt-blue-3: #7dc5ea,
+  $alt-blue-3: #7dc5ea
 );"""
         )
       end
