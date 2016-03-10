@@ -37,6 +37,7 @@ module SpindleGouge
 
       respond_to do |wants|
         wants.html do
+          @title = "ODI Brand API - labs #{params[:thing]} logo"
           erb :labs, layout: :default
         end
 
@@ -60,6 +61,7 @@ module SpindleGouge
 
       respond_to do |wants|
         wants.html do
+          @title = "ODI Brand API - #{params[:thing]} logo"
           erb :logo, layout: :default
         end
 
@@ -76,11 +78,12 @@ module SpindleGouge
     get '/palette' do
       respond_to do |wants|
         wants.html do
+          @title = 'ODI Brand API - colour palettes'
           erb :palette, layout: :default
         end
 
         wants.json do
-          palette.to_json
+          palette(with_hashes: false).to_json
         end
 
         wants.txt do |wants|

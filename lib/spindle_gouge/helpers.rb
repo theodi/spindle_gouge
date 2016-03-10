@@ -20,11 +20,13 @@ module SpindleGouge
       ]
     end
 
-    def palette
+    def palette with_hashes: true
+      h = ''
+      h = '#' if with_hashes
       @palette ||= begin
         p = {}
         PALETTE.each_pair do |name, hex|
-          p[name] = "##{pad hex}"
+          p[name] = "#{h}#{pad hex}"
         end
 
         p
