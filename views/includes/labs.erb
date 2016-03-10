@@ -1,0 +1,14 @@
+<h2>Labs</h2>
+<div class='row'>
+<% labs = File.join settings.views, 'svg', 'labs', 'word-inside' %>
+<% Dir.entries(labs).each do |lab| %>
+  <% unless lab[0] == '.' %>
+    <% url = "/labs/#{lab.sub '.svg.erb', ''}" %>
+      <div class='col-md-6'>
+        <a href='<%= url %>'>
+          <img src='<%= url %>.svg' width='200' />
+        </a>
+      </div>
+  <% end %>
+<% end %>
+</div>

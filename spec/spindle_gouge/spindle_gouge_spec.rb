@@ -12,26 +12,26 @@ module SpindleGouge
       it 'serves up an SVG' do
         get '/logo/basic', nil, SVG_HEADERS
         expect(last_response.headers['Content-type']).to eq 'image/svg+xml'
-        expect(last_response.body).to match /path fill="#d60303"/
-        expect(Digest::SHA256.hexdigest last_response.body).to eq 'f65b1fa43275a52b0f75069d5af62312df99e5b12efc269db6f2764e1fefb23a'
+        expect(last_response.body).to match /fill="#d60303"/
+        expect(Digest::SHA256.hexdigest last_response.body).to eq '8f4d84a33faf37c1edaee8ac70b60491c06f5fd1e5fff37354001fe882ead33c'
       end
 
       it 'colours an SVG' do
         get '/logo/basic?colour=fa8100', nil, SVG_HEADERS
-        expect(last_response.body).to match /path fill="#fa8100"/
-        expect(Digest::SHA256.hexdigest last_response.body).to eq '196bcab675d535c6de8517dac6a7f5bc375afcd3e889050fbb4c9d6606d1a480'
+        expect(last_response.body).to match /fill="#fa8100"/
+        expect(Digest::SHA256.hexdigest last_response.body).to eq 'c9f97ce388c722d98c78df57621aeee706c7b6c29521c2463880a4fef67dee7a'
       end
 
       it 'colours an SVG using a named colour' do
         get '/logo/basic?primary=blue-1', nil, SVG_HEADERS
-        expect(last_response.body).to match /path fill="#2254f4"/
-        expect(Digest::SHA256.hexdigest last_response.body).to eq 'c8b2c8bfa25aac44b2f46f487000f7ec96af7bc49312921dcd26c3c8d8f1339d'
+        expect(last_response.body).to match /fill="#2254f4"/
+        expect(Digest::SHA256.hexdigest last_response.body).to eq '5c3c8fef9c53c3d7d775a8729d67e1fafb575a5a7cfcf7673719a7ab27fe35ed'
       end
 
       it 'colours an SVG with primary and secondary colours' do
         get '/logo/partner?primary=123123&secondary=red', nil, SVG_HEADERS
         expect(last_response.body).to match /path fill="#123123".*path fill="#d60303"/m
-        expect(Digest::SHA256.hexdigest last_response.body).to eq '433487aa5da83c12023639261e9a67fd075830a481a7117b76fd389d06c9429a'
+        expect(Digest::SHA256.hexdigest last_response.body).to eq 'e3355e691e9cd486fe0baf3221cb8c383c112f696ef72f6b0dba2dcb429992b2'
       end
     end
 

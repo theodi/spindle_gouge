@@ -1,7 +1,7 @@
 colours:
-  primary: orange-2
+  primary: red
   secondary: green-1
-  tertiary: alt-blue-1
+  tertiary: blue-2
 
 ordering:
   - startup
@@ -15,7 +15,7 @@ ordering:
   - basic
   - alumni
   - accreditor
-  
+
   - trainer
   - registered-trainer
   - speaker

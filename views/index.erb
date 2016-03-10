@@ -4,41 +4,8 @@
 
 <hr />
 
-<h2>Logos</h2>
-<% count = 0 %>
-<div class='row'>
-<% logos = File.join settings.views, 'svg', 'logo' %>
-<% DEFAULTS['ordering'].each do |logo| %>
-  <% unless logo[0] == '.' %>
-    <% url = "/logo/#{logo.sub '.svg.erb', ''}" %>
-    <div class='col-md-4  '>
-      <a href='<%= url %>'>
-        <img src='<%= url %>.svg' width='150' />
-      </a>
-    </div>
-    <% count += 1 %>
-    <% if count == 3 %>
-      </div>
-      <div class='row'>
-      <% count = 0 %>
-    <% end %>
-  <% end %>
-<% end %>
-</div>
+<%= erb :'includes/labs' %>
 
 <hr />
 
-<h2>Labs</h2>
-<div class='row'>
-<% labs = File.join settings.views, 'svg', 'labs', 'word-inside' %>
-<% Dir.entries(labs).each do |lab| %>
-  <% unless lab[0] == '.' %>
-    <% url = "/labs/#{lab.sub '.svg.erb', ''}" %>
-      <div class='col-md-6'>
-        <a href='<%= url %>'>
-          <img src='<%= url %>.svg' width='200' />
-        </a>
-      </div>
-  <% end %>
-<% end %>
-</div>
+<%= erb :'includes/logos' %>
