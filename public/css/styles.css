@@ -18,3 +18,7 @@ input[type="radio"]:checked + label .fa-check-square {
 input[type="radio"]:checked + label .fa-square-o {
   display: none;
 }
+
+#colour-form .well {
+  background-color: #777777;
+}
