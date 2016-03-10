@@ -1,5 +1,6 @@
-<form class='form-inline' role='form' action='<%= request.path %>' method='get'>
+<form class='form-inline' id='colour-form' role='form' action='<%= request.path %>' method='get'>
   <div class='row'>
+    <div class='col-md-12 well'>
 
     <% [
       'primary',
@@ -8,21 +9,22 @@
     ].each do |level| %>
 
       <% inst_var = instance_variable_get "@#{level}" %>
-
-      <div class='col-md-4 well'>
-        <h2><%= level %></h2>
-        <% palette.each_pair do |name, hex| %>
-          <label class='radio' style='color: <%= hex %>'>
-            <input type='radio'
-                   name='<%= level %>'
-                   value='<%= hex[1..-1] %>'
-                   <% if inst_var == hex[1..-1] %>
-                    checked
-                  <% end %>>
-                  <%= name %>
-          </label>
-        <% end %>
-      </div>
+        <div class='row'>
+          <span class='col-md-2'>
+            <%= level %>
+          </span>
+          <div class='col-md-10'>
+            <% palette.each_pair do |name, hex| %>
+              <input type='radio' name='<%= level %>' value='<%= hex[1..-1] %>' id='<%= "#{level}-#{name}" %>'<% if inst_var == hex[1..-1] %> checked<% end %> />
+              <label for='<%= "#{level}-#{name}" %>' style='color: <%= hex %>'>
+                <span class="fa-stack">
+                  <i class="fa fa-check-square fa-stack-1x"></i>
+                  <i class="fa fa-square-o fa-stack-1x"></i>
+                </span>
+              </label>
+            <% end %>
+          </div>
+        </div>
 
     <% end %>
   </div>
