@@ -9,14 +9,16 @@ var colours = {
   'tertiary': '<%= @tertiary %>'
 }
 var path = '<%= request.env["REQUEST_PATH"] %>'
-var url = window.location.origin + path + ".svg?primary=" + colours['primary'] + "&secondary=" + colours['secondary'] + "&tertiary=" + colours['tertiary']
-$('#logo').html("<img src='" + path + ".svg?primary=" + colours['primary'] + "&secondary=" + colours['secondary'] + "&tertiary=" + colours['tertiary'] + "'>")
-$('#url').text(url)
+refresh()
 
-$( "input:radio" ).change(function(data) {
+$('input:radio').change(function(data) {
   colours[data.target.name] = data.target.value
-  url = window.location.origin + path + ".svg?primary=" + colours['primary'] + "&secondary=" + colours['secondary'] + "&tertiary=" + colours['tertiary']
-  $('#logo').hide().html("<img src='" + url + "' />").fadeIn('slow')
-  $('#url').text(url)
+  refresh()
 });
+
+function refresh() {
+  var url = window.location.origin + path + ".svg?primary=" + colours['primary'] + "&secondary=" + colours['secondary'] + "&tertiary=" + colours['tertiary']
+  $('#logo').html("<img height='200' src='" + url + "'>")
+  $('#url').text(url)
+}
 </script>
