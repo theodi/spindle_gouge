@@ -1,3 +1,20 @@
 form .well {
   margin: 10px;
 }
+
+/* Hidding the radiobuttons & checkboxes */
+input[type="radio"] {
+  display: none;
+}
+/* Hidding the "check" status of inputs */
+input[type="radio"] + label .fa-check-square {
+  display: none;
+}
+/* Styling the "check" status */
+input[type="radio"]:checked + label .fa-check-square {
+  display: block;
+}
+/* Styling radiobuttons */
+input[type="radio"]:checked + label .fa-square-o {
+  display: none;
+}

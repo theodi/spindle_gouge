@@ -1,37 +1,33 @@
 <form class='form-inline' id='colour-form' role='form' action='<%= request.path %>' method='get'>
   <div class='row'>
-    <div class='col-md-1'></div>
-    <div class='col-md-10 well'>
+    <div class='col-md-12 well'>
 
-      <% [
-        'primary',
-        'secondary',
-        'tertiary'
-      ].each do |level| %>
+    <% [
+      'primary',
+      'secondary',
+      'tertiary'
+    ].each do |level| %>
 
-        <% inst_var = instance_variable_get "@#{level}" %>
+      <% inst_var = instance_variable_get "@#{level}" %>
 
-          <%= level %>
-          <select name='<%= level %>' class='form-control'>
-          <% palette.each_pair do |name, hex| %>
-            <option value='<%= hex[1..-1] %>'
-                    <% if inst_var == hex[1..-1] %>
-                    selected
-              <% end %> style='color: <%= hex %>'>
-              <%= name %>
-            </option>
-          <% end %>
-          </select>
+        <%= level %>
+        <% palette.each_pair do |name, hex| %>
+          <input type='radio' name='<%= level %>' value='<%= hex[1..-1] %>' id='<%= "#{level}-#{name}" %>'<% if inst_var == hex[1..-1] %> checked<% end %> />
+          <label for='<%= "#{level}-#{name}" %>' style='color: <%= hex %>'>
+            <span class="fa-stack">
+              <i class="fa fa-check-square fa-stack-1x"></i>
+              <i class="fa fa-square-o fa-stack-1x"></i>
+            </span>
+          </label>
+        <% end %>
+        <br />
 
-      <% end %>
-
-      <div class='form-group pull-right'>
-        <button type='submit' class='btn btn-primary'>Submit</button>
-      </div>
-    </div>
-
-    <div class='col-md-1'></div>
-
+    <% end %>
   </div>
 
+  <div class="row">
+    <div class='form-group pull-right'>
+      <button type='submit' class='btn btn-primary'>Submit</button>
+    </div>
+  </div>
 </form>
