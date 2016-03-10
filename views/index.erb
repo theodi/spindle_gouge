@@ -5,16 +5,23 @@
 <hr />
 
 <h2>Logos</h2>
+<% count = 0 %>
 <div class='row'>
 <% logos = File.join settings.views, 'svg', 'logo' %>
-<% Dir.entries(logos).each do |logo| %>
+<% DEFAULTS['ordering'].each do |logo| %>
   <% unless logo[0] == '.' %>
     <% url = "/logo/#{logo.sub '.svg.erb', ''}" %>
-    <div class='col-md-6  '>
+    <div class='col-md-4  '>
       <a href='<%= url %>'>
-        <img src='<%= url %>.svg' width='200' />
+        <img src='<%= url %>.svg' width='150' />
       </a>
     </div>
+    <% count += 1 %>
+    <% if count == 3 %>
+      </div>
+      <div class='row'>
+      <% count = 0 %>
+    <% end %>
   <% end %>
 <% end %>
 </div>

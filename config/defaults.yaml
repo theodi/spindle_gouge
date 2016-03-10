@@ -1,4 +1,21 @@
 colours:
-  primary: red
+  primary: orange-2
   secondary: green-1
-  tertiary: blue-2
+  tertiary: alt-blue-1
+
+ordering:
+  - startup
+  - node
+  - mentors
+
+  - partner
+  - sponsor
+  - supporter
+
+  - basic
+  - alumni
+  - accreditor
+  
+  - trainer
+  - registered-trainer
+  - speaker
