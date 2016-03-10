@@ -1,5 +1,22 @@
-<div class='text-center well'>
-  <img src='<%= request.env['REQUEST_PATH'] %>.svg?primary=<%= @primary %>&secondary=<%= @secondary %>&tertiary=<%= @tertiary %>' />
-</div>
-
+<div class='text-center well' id='logo'></div>
+<div class='well' id='url'></div>
 <%= erb :'includes/colour-form' %>
+
+<script>
+var colours = {
+  'primary': '<%= @primary %>',
+  'secondary': '<%= @secondary %>',
+  'tertiary': '<%= @tertiary %>'
+}
+var path = '<%= request.env["REQUEST_PATH"] %>'
+var url = window.location.origin + path + ".svg?primary=" + colours['primary'] + "&secondary=" + colours['secondary'] + "&tertiary=" + colours['tertiary']
+$('#logo').html("<img src='" + path + ".svg?primary=" + colours['primary'] + "&secondary=" + colours['secondary'] + "&tertiary=" + colours['tertiary'] + "'>")
+$('#url').text(url)
+
+$( "input:radio" ).change(function(data) {
+  colours[data.target.name] = data.target.value
+  url = window.location.origin + path + ".svg?primary=" + colours['primary'] + "&secondary=" + colours['secondary'] + "&tertiary=" + colours['tertiary']
+  $('#logo').hide().html("<img src='" + url + "' />").fadeIn('slow')
+  $('#url').text(url)
+});
+</script>
