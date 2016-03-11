@@ -13,6 +13,7 @@
     </ul>
     <div class='tab-content'>
       <div class='tab-pane active' id='colours'>
+        <h2>Colours</h2>
         <div class='form-group well'>
           <% [
             'primary',
@@ -41,10 +42,25 @@
         </div>
       </div>
       <div class='tab-pane' id='file-format'>
-        <!-- form controls to be continued here -->
-        <p>Howdy, I'm in Section 2.</p>
+        <h2>File format</h2>
+        <div class='form-group'>
+          <% [
+            'svg',
+            'png'
+          ].each do |format| %>
+            <input type='radio' name='file_format' value='<%= format %>' id='<%= format %>'<% if format == @file_format %> checked<% end %> />
+            <label for='<%= format %>'>
+              <span class='fa-stack'>
+                <i class='fa fa-check-square fa-stack-1x'></i>
+                <i class='fa fa-square-o fa-stack-1x'></i>
+              </span>
+              <%= format %>
+            </label>
+          <% end %>
+        </div>
       </div>
       <div class='tab-pane' id='embed'>
+        <h2>URL for this configuration</h2>
         <div class='well' id='url'></div>
       </div>
     </div>
@@ -55,7 +71,8 @@
   var params = {
     'primary': '<%= @primary %>',
     'secondary': '<%= @secondary %>',
-    'tertiary': '<%= @tertiary %>'
+    'tertiary': '<%= @tertiary %>',
+    'file_format': 'svg'
   }
   var path = '<%= request.env["REQUEST_PATH"] %>'
   refresh()
@@ -66,7 +83,7 @@
   });
 
   function refresh() {
-    var url = window.location.origin + path + '.svg?primary=' + params['primary'] + '&secondary=' + params['secondary'] + '&tertiary=' + colours['tertiary']
+    var url = window.location.origin + path + '.' + params['file_format'] + '?primary=' + params['primary'] + '&secondary=' + params['secondary'] + '&tertiary=' + params['tertiary']
     $('#logo').html("<img height='200' src='" + url + "'>")
     $('#url').text(url)
   }
