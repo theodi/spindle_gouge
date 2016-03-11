@@ -17,11 +17,7 @@ module SpindleGouge
           {
             'colour' => 'red'
           }
-        )).to eq [
-          'd60303',
-          '1dd3a7',
-          '00b7ff'
-        ]
+        )).to include 'd60303'
       end
 
       it 'returns a primary' do
@@ -29,11 +25,7 @@ module SpindleGouge
           {
             'primary' => 'fa8100'
           }
-        )).to eq [
-          'fa8100',
-          '1dd3a7',
-          '00b7ff'
-        ]
+        )).to include 'fa8100'
       end
 
       it 'returns a secondary' do
@@ -41,25 +33,22 @@ module SpindleGouge
           {
             'secondary' => 'alt-blue-1'
           }
-        )).to eq [
-          'd60303',
-          '2f529f',
-          '00b7ff'
-        ]
+        )[1]).to eq '2f529f'
       end
 
       it 'returns a primary and a secondary' do
-        expect(helpers.wrangle_colours(
-          {
-            'colour' => 'eeeeee',
-            'primary' => '123654',
-            'secondary' => '191919'
-          }
-        )).to eq [
+        [
           '123654',
-          '191919',
-          '00b7ff'
-        ]
+          '191919'
+        ].each do |colour|
+          expect(helpers.wrangle_colours(
+            {
+              'colour' => 'eeeeee',
+              'primary' => '123654',
+            'secondary' => '191919'
+            }
+          )).to include colour
+        end
       end
     end
 

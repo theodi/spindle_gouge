@@ -26,7 +26,7 @@ module SpindleGouge
       @palette ||= begin
         p = {}
         PALETTE.each_pair do |name, hex|
-          p[name] = "#{h}#{pad hex}"
+          p[name] = "#{h}#{hex}"
         end
 
         p
@@ -77,10 +77,6 @@ module SpindleGouge
       end
 
       a
-    end
-
-    def pad s
-      "#{'0' * (6 - s.to_s.length)}#{s}"
     end
   end
 end
