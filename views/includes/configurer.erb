@@ -1,4 +1,4 @@
-<form id='configuration' class='form-inline'>
+<form id='configuration' class='form'>
   <div class='tabbable'>
     <ul class='nav nav-tabs'>
       <li class='active'>
@@ -29,7 +29,7 @@
                 <% palette.each_pair do |name, hex| %>
                   <input type='radio' name='<%= level %>' value='<%= hex[1..-1] %>' id='<%= "#{level}-#{name}" %>'<% if inst_var == hex[1..-1] %> checked<% end %> />
                   <label for='<%= "#{level}-#{name}" %>' style='color: <%= hex %>'>
-                    <span class='fa-stack'>
+                    <span class='fa-stack' title='<%= name %>' alt='<%= name %>'>
                       <i class='fa fa-check-square fa-stack-1x'></i>
                       <i class='fa fa-square-o fa-stack-1x'></i>
                     </span>
@@ -62,7 +62,7 @@
       <div class='tab-pane' id='embed'>
         <h2>Embed this configuration</h2>
         <div class='input-group'>
-          <input class='form-control' type='text' id='url' minwidth='500' readonly>
+          <input class='form-control' type='text' id='url' readonly>
           <span class='input-group-btn'>
             <button class='btn btn-default' type='button' data-clipboard-target='#url'>
               <i class='fa fa-clipboard' alt='Copy to clipboard' title='Copy to clipboard'></i>
