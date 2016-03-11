@@ -1,0 +1,86 @@
+<form id='configuration' class='form-inline'>
+  <div class='tabbable'>
+    <ul class='nav nav-tabs'>
+      <li class='active'>
+        <a href='#variant' data-toggle='tab'>Variant</a>
+      </li>
+      <li>
+        <a href='#file-type' data-toggle='tab'>File type</a>
+      </li>
+      <li>
+        <a href='#embed' data-toggle='tab'>Embed</a>
+      </li>
+    </ul>
+    <div class='tab-content'>
+      <div class='tab-pane active' id='variant'>
+        <h2>Variant</h2>
+        <div class='form-group'>
+          <% [
+            'inside',
+            'outside'
+          ].each do |location| %>
+            <input type='radio' name='word_location' value='<%= location %>' id='<%= location %>'<% if location == @word_location %> checked<% end %> />
+            <label for='<%= location %>'>
+              <span class='fa-stack'>
+                <i class='fa fa-check-square fa-stack-1x'></i>
+                <i class='fa fa-square-o fa-stack-1x'></i>
+              </span>
+              Word <%= location %>
+            </label>
+          <% end %>
+        </div>
+      </div>
+      <div class='tab-pane' id='file-type'>
+        <h2>File type</h2>
+        <div class='form-group'>
+          <% [
+            'svg',
+            'png'
+          ].each do |format| %>
+            <input type='radio' name='file_format' value='<%= format %>' id='<%= format %>'<% if format == @file_format %> checked<% end %> />
+            <label for='<%= format %>'>
+              <span class='fa-stack'>
+                <i class='fa fa-check-square fa-stack-1x'></i>
+                <i class='fa fa-square-o fa-stack-1x'></i>
+              </span>
+              <%= format %>
+            </label>
+          <% end %>
+        </div>
+      </div>
+      <div class='tab-pane' id='embed'>
+        <h2>Embed this configuration</h2>
+        <div class='input-group'>
+          <input class='form-control' type='text' id='url' minwidth='500' readonly>
+          <span class='input-group-btn'>
+            <button class='btn btn-default' type='button' data-clipboard-target='#url'>
+              <i class='fa fa-clipboard' alt='Copy to clipboard' title='Copy to clipboard'></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<script>
+  var params = {
+    'word_location': '<%= @word_location %>',
+    'file_format': 'svg'
+  }
+  var path = '<%= request.env["REQUEST_PATH"] %>'
+  refresh()
+
+  $('input:radio').change(function(data) {
+    params[data.target.name] = data.target.value
+    refresh()
+  });
+
+  function refresh() {
+    var url = window.location.origin + path + '.' + params['file_format'] + '?word=' + params['word_location']
+    $('#logo').html("<img src='" + url + "'>")
+    $('#url').val(url)
+  }
+
+  var clipboard = new Clipboard('.btn');
+</script>

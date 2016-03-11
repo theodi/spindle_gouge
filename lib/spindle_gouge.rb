@@ -28,6 +28,7 @@ module SpindleGouge
 
     get '/labs/:name' do
       @word_location = params.fetch('word', 'inside')
+      @file_format = 'svg'
       path = File.join(
         'svg',
         'labs',
