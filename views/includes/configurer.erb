@@ -5,10 +5,10 @@
         <a href='#colours' data-toggle='tab'>Colours</a>
       </li>
       <li>
-        <a href='#file-format' data-toggle='tab'>File format</a>
+        <a href='#file-type' data-toggle='tab'>File type</a>
       </li>
       <li>
-        <a href='#embed' data-toggle='tab'>Embed this</a>
+        <a href='#embed' data-toggle='tab'>Embed</a>
       </li>
     </ul>
     <div class='tab-content'>
@@ -41,8 +41,8 @@
           <% end %>
         </div>
       </div>
-      <div class='tab-pane' id='file-format'>
-        <h2>File format</h2>
+      <div class='tab-pane' id='file-type'>
+        <h2>File type</h2>
         <div class='form-group'>
           <% [
             'svg',
@@ -65,7 +65,7 @@
           <input class='form-control' type='text' id='url' minwidth='500' readonly>
           <span class='input-group-btn'>
             <button class='btn btn-default' type='button' data-clipboard-target='#url'>
-              <i class='fa fa-clipboard'></i>
+              <i class='fa fa-clipboard' alt='Copy to clipboard' title='Copy to clipboard'></i>
             </button>
           </span>
         </div>
