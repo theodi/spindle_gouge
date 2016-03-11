@@ -60,11 +60,15 @@
         </div>
       </div>
       <div class='tab-pane' id='embed'>
-        <h2>URL for this configuration</h2>
-        <input class='form-control' type='text' id='url' minwidth='500' readonly>
-        <button class='btn btn-success' type='button' data-clipboard-target='#url'>
-          <i class='fa fa-clipboard' title='Copy to clipboard' alt='Copy to clipboard'></i>
-        </button>
+        <h2>Embed this configuration</h2>
+        <div class='input-group'>
+          <input class='form-control' type='text' id='url' minwidth='500' readonly>
+          <span class='input-group-btn'>
+            <button class='btn btn-default' type='button' data-clipboard-target='#url'>
+              <i class='fa fa-clipboard'></i>
+            </button>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -91,5 +95,5 @@
     $('#url').val(url)
   }
 
-  new Clipboard('.btn');
+  var clipboard = new Clipboard('.btn');
 </script>

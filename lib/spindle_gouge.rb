@@ -53,6 +53,7 @@ module SpindleGouge
 
     get '/:thing/:name' do
       @primary, @secondary, @tertiary = wrangle_colours(params)
+      @file_format = 'svg'
       path = File.join(
         'svg',
         params[:thing],
