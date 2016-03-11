@@ -56,7 +56,7 @@ module SpindleGouge
 
       it 'gets one with the word on the outside' do
         get '/labs/bubbles?word=outside', nil, SVG_HEADERS
-        expect(Digest::SHA256.hexdigest last_response.body).to eq '7fb407bcc44f51ad01dd182942cdb139563f14b9633126f1aae2281a3ef37682'
+        expect(Digest::SHA256.hexdigest last_response.body).to eq '4cce4045b174e7d1ef0010cb73474b6704d8a1b8f956e2300bd0a0af8feb6b99'
       end
     end
   end

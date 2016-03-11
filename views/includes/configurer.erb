@@ -24,10 +24,7 @@
                 <% palette.each_pair do |name, hex| %>
                   <input type='radio' name='<%= level %>' value='<%= hex[1..-1] %>' id='<%= "#{level}-#{name}" %>'<% if inst_var == hex[1..-1] %> checked<% end %> />
                   <label for='<%= "#{level}-#{name}" %>' style='color: <%= hex %>'>
-                    <span class='fa-stack' title='<%= name %>' alt='<%= name %>'>
-                      <i class='fa fa-check-square fa-stack-1x'></i>
-                      <i class='fa fa-square-o fa-stack-1x'></i>
-                    </span>
+                    <%= erb :'includes/form/check-box' %>
                   </label>
                 <% end %>
               </div>
@@ -43,25 +40,14 @@
 </form>
 
 <script>
-  var params = {
-    'primary': '<%= @primary %>',
-    'secondary': '<%= @secondary %>',
-    'tertiary': '<%= @tertiary %>',
-    'file_format': 'svg'
-  }
-  var path = '<%= request.env["REQUEST_PATH"] %>'
-  refresh()
-
-  $('input:radio').change(function(data) {
-    params[data.target.name] = data.target.value
-    refresh()
-  });
-
-  function refresh() {
-    var url = window.location.origin + path + '.' + params['file_format'] + '?primary=' + params['primary'] + '&secondary=' + params['secondary'] + '&tertiary=' + params['tertiary']
-    $('#logo').html("<img height='200' src='" + url + "'>")
-    $('#url').val(url)
-  }
-
-  var clipboard = new Clipboard('.btn');
+var params = {
+  'primary': '<%= @primary %>',
+  'secondary': '<%= @secondary %>',
+  'tertiary': '<%= @tertiary %>',
+  'file_format': 'svg'
+}
 </script>
+
+<%= erb :'includes/form/javascripts', locals: {
+  height: '200px'
+} %>

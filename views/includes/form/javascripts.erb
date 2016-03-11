@@ -1,0 +1,25 @@
+<script>
+  var path = '<%= request.env["REQUEST_PATH"] %>'
+  refresh()
+
+  $('input:radio').change(function(data) {
+    params[data.target.name] = data.target.value
+    refresh()
+  });
+
+  function refresh() {
+    qs = []
+    $.each(params, function(k, v) {
+      if(k === 'file_format') {
+      } else {
+        qs.push(k + '=' + v)
+      }
+    })
+
+    var url = window.location.origin + path + '.' + params['file_format'] + '?' + qs.join('&')
+    $('#logo').html("<img<% if height %> height='<%= height %>'<% end %> src='" + url + "'>")
+    $('#url').val(url)
+  }
+
+  var clipboard = new Clipboard('.btn');
+</script>
