@@ -1,6 +1,18 @@
-<form class='form-inline' id='configuration-form' role='form' action='<%= request.path %>' method='get'>
+<form id="configuration" class="form-inline">
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="#colours" data-toggle="tab">Colours</a>
+    </li>
+    <li>
+      <a href="#file-format" data-toggle="tab">File format</a>
+    </li>
+    <li>
+      <a href="#embed" data-toggle="tab">Embed this</a>
+    </li>
+  </ul>
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="colours">
+    <div class="tab-pane active" id="colours">
       <div class='form-group well'>
         <% [
           'primary',
@@ -28,5 +40,14 @@
         <% end %>
       </div>
     </div>
+    <div class="tab-pane" id="file-format">
+      <!-- form controls to be continued here -->
+      <p>Howdy, I'm in Section 2.</p>
+    </div>
+    <div class="tab-pane" id="embed">
+      <div class='well' id='url'></div>
+    </div>
   </div>
+</div>
+
 </form>
