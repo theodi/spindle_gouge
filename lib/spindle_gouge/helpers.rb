@@ -68,6 +68,10 @@ module SpindleGouge
       end
     end
 
+    def titleise s
+      s[0].upcase + s[1..-1]
+    end
+
     private
 
     def sassify

@@ -1,0 +1,18 @@
+<div class='tab-pane' id='file-type'>
+  <h2>File type</h2>
+  <div class='form-group'>
+    <% [
+      'svg',
+      'png'
+    ].each do |format| %>
+      <input type='radio' name='file_format' value='<%= format %>' id='<%= format %>'<% if format == @file_format %> checked<% end %> />
+      <label for='<%= format %>'>
+        <span class='fa-stack'>
+          <i class='fa fa-check-square fa-stack-1x'></i>
+          <i class='fa fa-square-o fa-stack-1x'></i>
+        </span>
+        <%= format %>
+      </label>
+    <% end %>
+  </div>
+</div>

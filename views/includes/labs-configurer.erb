@@ -1,16 +1,11 @@
 <form id='configuration' class='form'>
   <div class='tabbable'>
-    <ul class='nav nav-tabs'>
-      <li class='active'>
-        <a href='#variant' data-toggle='tab'>Variant</a>
-      </li>
-      <li>
-        <a href='#file-type' data-toggle='tab'>File type</a>
-      </li>
-      <li>
-        <a href='#embed' data-toggle='tab'>Embed</a>
-      </li>
-    </ul>
+    <%= erb :'includes/form/nav-tabs', locals: {
+      tabs: [
+        'variant'
+      ]
+    }
+    %>
     <div class='tab-content'>
       <div class='tab-pane active' id='variant'>
         <h2>Variant</h2>
@@ -30,35 +25,8 @@
           <% end %>
         </div>
       </div>
-      <div class='tab-pane' id='file-type'>
-        <h2>File type</h2>
-        <div class='form-group'>
-          <% [
-            'svg',
-            'png'
-          ].each do |format| %>
-            <input type='radio' name='file_format' value='<%= format %>' id='<%= format %>'<% if format == @file_format %> checked<% end %> />
-            <label for='<%= format %>'>
-              <span class='fa-stack'>
-                <i class='fa fa-check-square fa-stack-1x'></i>
-                <i class='fa fa-square-o fa-stack-1x'></i>
-              </span>
-              <%= format %>
-            </label>
-          <% end %>
-        </div>
-      </div>
-      <div class='tab-pane' id='embed'>
-        <h2>Embed this configuration</h2>
-        <div class='input-group'>
-          <input class='form-control' type='text' id='url' minwidth='500' readonly>
-          <span class='input-group-btn'>
-            <button class='btn btn-default' type='button' data-clipboard-target='#url'>
-              <i class='fa fa-clipboard' alt='Copy to clipboard' title='Copy to clipboard'></i>
-            </button>
-          </span>
-        </div>
-      </div>
+      <%= erb :'includes/form/file-type' %>
+      <%= erb :'includes/form/embed' %>
     </div>
   </div>
 </form>

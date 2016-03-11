@@ -77,5 +77,9 @@ module SpindleGouge
         }
       )
     end
+
+    it 'titleises a string' do
+      expect(helpers.titleise 'colours').to eq 'Colours'
+    end
   end
 end

@@ -1,0 +1,14 @@
+<ul class='nav nav-tabs'>
+  <% first = true %>
+  <% tabs.each do |tab| %>
+    <li<% if first %> class='active'<% end %>>
+      <a href='#<%= tab %>' data-toggle='tab'><%= titleise tab %></a>
+    </li>
+  <% end %>
+  <li>
+    <a href='#file-type' data-toggle='tab'>File type</a>
+  </li>
+  <li>
+    <a href='#embed' data-toggle='tab'>Embed</a>
+  </li>
+</ul>
