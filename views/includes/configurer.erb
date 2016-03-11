@@ -61,7 +61,10 @@
       </div>
       <div class='tab-pane' id='embed'>
         <h2>URL for this configuration</h2>
-        <div class='well' id='url'></div>
+        <input class='form-control' type='text' id='url' minwidth='500' readonly>
+        <button class='btn btn-success' type='button' data-clipboard-target='#url'>
+          <i class='fa fa-clipboard' title='Copy to clipboard' alt='Copy to clipboard'></i>
+        </button>
       </div>
     </div>
   </div>
@@ -85,6 +88,8 @@
   function refresh() {
     var url = window.location.origin + path + '.' + params['file_format'] + '?primary=' + params['primary'] + '&secondary=' + params['secondary'] + '&tertiary=' + params['tertiary']
     $('#logo').html("<img height='200' src='" + url + "'>")
-    $('#url').text(url)
+    $('#url').val(url)
   }
+
+  new Clipboard('.btn');
 </script>
