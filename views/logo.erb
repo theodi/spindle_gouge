@@ -1,23 +1,2 @@
 <div class='text-center well' id='logo'></div>
 <%= erb :'includes/configurer' %>
-
-<script>
-var colours = {
-  'primary': '<%= @primary %>',
-  'secondary': '<%= @secondary %>',
-  'tertiary': '<%= @tertiary %>'
-}
-var path = '<%= request.env["REQUEST_PATH"] %>'
-refresh()
-
-$('input:radio').change(function(data) {
-  colours[data.target.name] = data.target.value
-  refresh()
-});
-
-function refresh() {
-  var url = window.location.origin + path + ".svg?primary=" + colours['primary'] + "&secondary=" + colours['secondary'] + "&tertiary=" + colours['tertiary']
-  $('#logo').html("<img height='200' src='" + url + "'>")
-  $('#url').text(url)
-}
-</script>
